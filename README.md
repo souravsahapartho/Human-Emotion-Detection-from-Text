@@ -6,126 +6,65 @@ A machine learning and NLP-based project for detecting human emotions from text 
 
 ## Project Overview
 
-This project analyzes text messages and predicts human emotions such as:
+This project analyzes text messages and predicts 11 different human emotions. The project applies text preprocessing, TF-IDF feature extraction, and evaluates multiple machine learning models to find the best classifier. The final optimized model is deployed via an interactive web application.
 
-- Joy
-- Sadness
-- Anger
-- Surprise
-- Neutral
-- Fun
-- Enthusiasm
-
-The project uses machine learning and deep learning model selection techniques for text classification.
+### Detected Emotions
+The model is capable of classifying text into the following categories:
+* Anger
+* Empty
+* Enthusiasm
+* Fun
+* Happiness
+* Hate
+* Love
+* Neutral
+* Relief
+* Sadness
+* Surprise
 
 ---
 
 ## Features
 
-- Text-based emotion detection
-- Data preprocessing and cleaning
-- Emotion label encoding
-- Emotion distribution visualization
-- Multiple model selection
-- NLP-based workflow
+- **Text Data Preprocessing**: Handles URL removal, lowercasing, and removal of non-alphabetic characters using Regex.
+- **Feature Extraction**: Utilizes `TfidfVectorizer` (up to 5000 features, analyzing unigrams and bigrams) for text vectorization.
+- **Model Comparison**: Trains and evaluates multiple algorithms to ensure the highest accuracy.
+- **Web App Interface**: Deployed as a functional UI using Gradio for real-time predictions.
 
 ---
 
 ## Technologies Used
 
-- Python
-- Pandas
-- Matplotlib
-- Seaborn
-- Scikit-learn
-- Jupyter Notebook
+- **Python**
+- **Pandas & Numpy** (Data Manipulation)
+- **Matplotlib & Seaborn** (Data Visualization)
+- **Scikit-learn** (Preprocessing, Evaluation, Naive Bayes, Logistic Regression, AdaBoost)
+- **XGBoost** (Advanced Classification)
+- **Gradio** (Web Interface Deployment)
+- **Pickle** (Model Serialization)
 
 ---
 
-## Dataset
+## Model Selection & Performance
 
-The dataset contains two columns:
+Four different machine learning algorithms were trained and tested against the dataset. **XGBoost** proved to be the best-performing model and was chosen for final deployment.
 
-| Column | Description |
+| Model | Accuracy Score |
 |---|---|
-| text | Input sentence/text |
-| emotion | Emotion label |
-
-Example:
-
-| text | emotion |
-|---|---|
-| i feel very happy today | joy |
-| i am upset | sadness |
+| **XGBoost** | **~80.85%** |
+| Logistic Regression | ~80.60% |
+| Multinomial Naive Bayes | ~70.02% |
+| AdaBoost | ~57.84% |
 
 ---
 
-## Data Preprocessing
+## Application Deployment
 
-The following preprocessing steps were performed:
+The project successfully deploys the trained XGBoost model using a **Gradio** web interface. The application loads the saved `emotion_model.pkl`, `tfidf.pkl`, and `label_encoder.pkl` files to take user text input, clean it using identical preprocessing rules, and immediately output the predicted emotion.
 
-- Removing null values
-- Removing duplicate rows
-- Converting text to lowercase
-- Removing punctuation
-- Removing numbers
-- Removing extra spaces
-- Label encoding
+### How to Run the App
 
----
-
-## Selected Models
-
-The following models were selected for emotion classification:
-
-- Naive Bayes
-- Support Vector Machine (SVM)
-- Random Forest
-- LSTM
-
----
-
-## Why These Models?
-
-### Naive Bayes
-Fast and effective for text classification tasks.
-
-### SVM
-Provides good accuracy for NLP and text classification.
-
-### Random Forest
-Improves prediction stability and reduces overfitting.
-
-### LSTM
-Understands text sequence and context better.
-
----
-
-## Visualization
-
-Emotion distribution was visualized using Seaborn countplot.
-
----
-
-## Project Workflow
-
-```text
-Dataset Collection
-        ↓
-Data Preprocessing
-        ↓
-Label Encoding
-        ↓
-Data Visualization
-        ↓
-Model Selection
-```
-
----
-
-## Future Improvements
-
-- Model training and testing
-- Accuracy comparison
-- Real-time emotion prediction
-- Web application deployment
+1. Ensure all dependencies are installed (e.g., `gradio`, `xgboost`, `scikit-learn`).
+2. Run the deployment script:
+   ```bash
+   python app.py
