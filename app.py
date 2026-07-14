@@ -34,7 +34,8 @@ def predict_emotion(text):
     if not cleaned:
         return "Please enter valid text."
 
-    prediction = model.predict(vectorizer.transform([cleaned]))[0]
+    vector = vectorizer.transform([cleaned])
+    prediction = model.predict(vector)[0]
     emotion = encoder.inverse_transform([prediction])[0]
 
     return f"Detected Emotion: {emotion}"
@@ -46,7 +47,7 @@ interface = gr.Interface(
         placeholder="Type your text here...",
         label="Input Text"
     ),
-    outputs=gr.Text(
+    outputs=gr.Textbox(
         label="Prediction"
     ),
     title="Emotion Detection",
@@ -58,6 +59,5 @@ if __name__ == "__main__":
 
     interface.launch(
         server_name="0.0.0.0",
-        server_port=port,
-        enable_monitoring=False
+        server_port=port
     )
