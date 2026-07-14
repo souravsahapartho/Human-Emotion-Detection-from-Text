@@ -1,0 +1,12 @@
+venv/
+.venv/
+.venv-1/
+.gradio/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.git/
+.gitignore
+main.ipynb
+final_dataset.csv
